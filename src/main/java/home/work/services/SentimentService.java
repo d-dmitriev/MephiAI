@@ -40,6 +40,8 @@ public class SentimentService {
             String sentiment = prediction.getOutput().getLabel();
             double confidence = prediction.getOutput().getScore();
 
+            log.info("Analyze string={}, sentiment={}, confidence={}", text, sentiment, confidence);
+
             return new SentimentResult(sentiment, confidence, example.size());
         } catch (Exception e) {
             log.error("Analyze error :{}", e.getMessage());

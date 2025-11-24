@@ -420,39 +420,6 @@
       ]
     },
     {
-      "type": "home.work.SentimentController",
-      "allDeclaredFields": true,
-      "methods": [
-        {
-          "name": "<init>",
-          "parameterTypes": []
-        },
-        {
-          "name": "analyzeSentiment",
-          "parameterTypes": [
-            "java.lang.String",
-            "boolean"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "home.work.SentimentService",
-      "allDeclaredFields": true,
-      "methods": [
-        {
-          "name": "<init>",
-          "parameterTypes": []
-        },
-        {
-          "name": "<init>",
-          "parameterTypes": [
-            "java.lang.String"
-          ]
-        }
-      ]
-    },
-    {
       "type": "home.work.controllers.SentimentController",
       "allDeclaredFields": true,
       "methods": [
@@ -1584,9 +1551,6 @@
       ]
     },
     {
-      "type": "org.apache.coyote.AbstractProcessorLight"
-    },
-    {
       "type": "org.apache.coyote.AbstractProtocol",
       "methods": [
         {
@@ -1617,9 +1581,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "org.apache.coyote.AbstractProtocol$ConnectionHandler"
     },
     {
       "type": "org.apache.coyote.Adapter"
@@ -1681,13 +1642,7 @@
       ]
     },
     {
-      "type": "org.apache.coyote.http11.Http11InputBuffer"
-    },
-    {
       "type": "org.apache.coyote.http11.Http11NioProtocol"
-    },
-    {
-      "type": "org.apache.coyote.http11.Http11Processor"
     },
     {
       "type": "org.apache.hc.client5.http.impl.classic.HttpClients"
@@ -1979,25 +1934,10 @@
       ]
     },
     {
-      "type": "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor"
-    },
-    {
       "type": "org.apache.tomcat.util.net.SSLHostConfig"
     },
     {
-      "type": "org.apache.tomcat.util.net.SocketProcessorBase"
-    },
-    {
       "type": "org.apache.tomcat.util.net.SocketProperties"
-    },
-    {
-      "type": "org.apache.tomcat.util.threads.TaskThread$WrappingRunnable"
-    },
-    {
-      "type": "org.apache.tomcat.util.threads.ThreadPoolExecutor"
-    },
-    {
-      "type": "org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker"
     },
     {
       "type": "org.apache.tomcat.websocket.server.WsFilter"
@@ -6354,9 +6294,6 @@
       "type": "org.springframework.web.bind.annotation.Mapping"
     },
     {
-      "type": "org.springframework.web.bind.annotation.PostMapping"
-    },
-    {
       "type": "org.springframework.web.bind.annotation.RequestBody"
     },
     {
@@ -7396,21 +7333,6 @@
       "glob": "home/work/"
     },
     {
-      "glob": "home/work/SentimentController$BatchSentimentRequest.class"
-    },
-    {
-      "glob": "home/work/SentimentController.class"
-    },
-    {
-      "glob": "home/work/SentimentService$SentimentAnalysisException.class"
-    },
-    {
-      "glob": "home/work/SentimentService$SentimentResult.class"
-    },
-    {
-      "glob": "home/work/SentimentService.class"
-    },
-    {
       "glob": "home/work/controllers/SentimentController.class"
     },
     {
@@ -7481,9 +7403,6 @@
     },
     {
       "glob": "models/final_sentiment_model.proto"
-    },
-    {
-      "glob": "models/final_sentiment_model.ser"
     },
     {
       "glob": "org/apache/catalina/authenticator/LocalStrings.properties"
@@ -8948,143 +8867,6 @@
       "locales": [
         "ru-RU"
       ]
-    }
-  ],
-  "serialization": [
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.ListProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.MapProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.impl.ConfiguredObjectProvenanceImpl"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.impl.SkeletalConfiguredObjectProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.BooleanProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.DateTimeProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.DoubleProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.IntProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.LongProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.provenance.primitives.StringProvenance"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.util.MutableLong"
-    },
-    {
-      "type": "com.oracle.labs.mlrg.olcut.util.MutableNumber"
-    },
-    {
-      "type": "double[]"
-    },
-    {
-      "type": "double[][]"
-    },
-    {
-      "type": "int[]"
-    },
-    {
-      "type": "java.lang.Integer"
-    },
-    {
-      "type": "java.lang.Number"
-    },
-    {
-      "type": "java.time.Ser"
-    },
-    {
-      "type": "java.util.ArrayList"
-    },
-    {
-      "type": "java.util.Collections$EmptyMap"
-    },
-    {
-      "type": "java.util.Collections$UnmodifiableCollection"
-    },
-    {
-      "type": "java.util.Collections$UnmodifiableList"
-    },
-    {
-      "type": "java.util.Collections$UnmodifiableMap"
-    },
-    {
-      "type": "java.util.HashMap"
-    },
-    {
-      "type": "org.tribuo.CategoricalIDInfo"
-    },
-    {
-      "type": "org.tribuo.CategoricalInfo"
-    },
-    {
-      "type": "org.tribuo.FeatureMap"
-    },
-    {
-      "type": "org.tribuo.ImmutableFeatureMap"
-    },
-    {
-      "type": "org.tribuo.Model"
-    },
-    {
-      "type": "org.tribuo.SkeletalVariableInfo"
-    },
-    {
-      "type": "org.tribuo.classification.ImmutableLabelInfo"
-    },
-    {
-      "type": "org.tribuo.classification.LabelFactory$LabelFactoryProvenance"
-    },
-    {
-      "type": "org.tribuo.classification.LabelInfo"
-    },
-    {
-      "type": "org.tribuo.classification.sgd.linear.LinearSGDModel"
-    },
-    {
-      "type": "org.tribuo.common.sgd.AbstractLinearSGDModel"
-    },
-    {
-      "type": "org.tribuo.common.sgd.AbstractSGDModel"
-    },
-    {
-      "type": "org.tribuo.math.LinearParameters"
-    },
-    {
-      "type": "org.tribuo.math.la.DenseMatrix"
-    },
-    {
-      "type": "org.tribuo.math.la.Tensor[]"
-    },
-    {
-      "type": "org.tribuo.math.util.ExpNormalizer"
-    },
-    {
-      "type": "org.tribuo.provenance.DatasetProvenance"
-    },
-    {
-      "type": "org.tribuo.provenance.ModelProvenance"
-    },
-    {
-      "type": "org.tribuo.provenance.SimpleDataSourceProvenance"
-    },
-    {
-      "type": "org.tribuo.provenance.SkeletalTrainerProvenance"
-    },
-    {
-      "type": "org.tribuo.provenance.impl.TrainerProvenanceImpl"
     }
   ],
   "jni": [

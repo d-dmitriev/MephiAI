@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-sentiment-deployment
+  labels:
+    app: spring-boot-sentiment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-sentiment
+  template:
+    metadata:
+      labels:
+        app: spring-boot-sentiment
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/scheme: "http"
+    spec:
+      containers:
+        - name: spring-boot-app
+          image: localhost:5000/mephi-ai:1.0.4
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-Xmx300m -Xms150m"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "10m" # <- маленькое значение для тестирования нагрузки
+            limits:
+              memory: "512Mi"
+              cpu: "50m" # <- маленькое значение для тестирования нагрузки
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-sentiment-service
+  labels:
+    app: spring-boot-sentiment
+spec:
+  selector:
+    app: spring-boot-sentiment
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-sentiment-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: nginx
+  rules:
+    #- host: minikube-ingress.local
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spring-boot-sentiment-service
+                port:
+                  number: 8080
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: spring-boot-sentiment-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-boot-sentiment-deployment
+  minReplicas: 3
+  maxReplicas: 10
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 30  # Ждать только 30 секунд перед уменьшением
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 30  # Уменьшать на 2 пода каждые 30 секунд
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: spring-boot-sentiment-monitoring
+  namespace: monitoring  # ← ВАЖНО: должен быть в monitoring
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot-sentiment
+  namespaceSelector:
+    any: true  # Разрешаем искать Service в любом namespace
+  endpoints:
+    - port: http
+      path: /actuator/prometheus
+      interval: 15s
+      scrapeTimeout: 10s
