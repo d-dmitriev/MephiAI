@@ -1,0 +1,3 @@
+app:
+  model:
+    path: models/final_sentiment_model.proto
