@@ -5,7 +5,7 @@ metadata:
   labels:
     app: spring-boot-sentiment
 spec:
-  replicas: 3
+  replicas: 2
   minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым
   strategy:
     type: RollingUpdate
@@ -29,25 +29,34 @@ spec:
         - name: spring-boot-app
 #          image: localhost:5000/mephi-ai:1.0.5
 #          image: localhost:5000/mephi-onnx:ubi10-micro-repack.1
-          image: localhost:5000/mephi-tribuo:1.0.1-bin
+#          image: localhost:5000/mephi-tribuo:1.0.1-bin
+          image: localhost:5000/mephi-tribuo:1.0.1-jlink
           ports:
             - containerPort: 8080
           env:
             - name: JAVA_OPTS
               value: "-Xmx300m -Xms150m"
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            failureThreshold: 30      # Количество попыток
+            periodSeconds: 10         # Интервал между попытками
+            # initialDelaySeconds: 0  # Можно не указывать, по умолчанию 0
+            # Общее максимальное время: 30 * 10 = 300 секунд (5 минут)
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 5  # Даем приложению время на запуск
-            periodSeconds: 5
+            initialDelaySeconds: 0    # Начинаем проверять сразу после startup
+            periodSeconds: 5          # Быстрая проверка когда приложение запустилось
             timeoutSeconds: 3
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 10
           resources:
             requests:
@@ -83,7 +92,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 #    nginx.ingress.kubernetes.io/upstream-hash-by: "$request_uri"  # Распределение по URI
-    nginx.ingress.kubernetes.io/service-upstream: "true"  # Использовать Service вместо прямых Pod IP
+#    nginx.ingress.kubernetes.io/service-upstream: "true"  # Использовать Service вместо прямых Pod IP
 spec:
   ingressClassName: nginx
   rules:
@@ -108,8 +117,22 @@ spec:
     kind: Deployment
     name: spring-boot-sentiment-deployment
   minReplicas: 3
-  maxReplicas: 10
+  maxReplicas: 20
   behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0 # 120
+      policies:
+        - type: Pods
+          value: 2           # Следующие поды - с задержкой
+          periodSeconds: 120 # Ждем 120 секунд между добавлениями
+#        - type: Pods
+#          value: 1           # Максимум +1 под за период
+#          periodSeconds: 30  # Каждые 30 секунд
+#        - type: Percent
+#          value: 100         # Или +100% от текущего количества
+#          periodSeconds: 30
+#      selectPolicy: Min    # Использовать наименьшее значение из политик
+      selectPolicy: Max    # Используем максимально возможное масштабирование
     scaleDown:
       stabilizationWindowSeconds: 30  # Ждать только 30 секунд перед уменьшением
       policies:
