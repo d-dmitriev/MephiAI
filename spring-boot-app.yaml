@@ -5,7 +5,7 @@ metadata:
   labels:
     app: spring-boot-sentiment
 spec:
-  replicas: 2
+  #replicas: 2 <- не используем с HPA иначе будет сбрасываться при применении
   minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым
   strategy:
     type: RollingUpdate
@@ -64,7 +64,7 @@ spec:
               cpu: "10m" # <- маленькое значение для тестирования нагрузки
             limits:
               memory: "512Mi"
-              cpu: "20m" # <- маленькое значение для тестирования нагрузки
+              cpu: "40m" # <- маленькое значение для тестирования нагрузки
 ---
 apiVersion: v1
 kind: Service
