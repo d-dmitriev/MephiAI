@@ -1,8 +1,11 @@
+spring:
+  main:
+    banner-mode: off
 management:
   endpoints:
     web:
       exposure:
-        include: prometheus
+        include: health,prometheus
   metrics:
     tags:
       application: spring-boot-sentiment

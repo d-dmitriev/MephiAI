@@ -6,6 +6,12 @@ metadata:
     app: spring-boot-sentiment
 spec:
   replicas: 3
+  minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1  # Максимум на 2 пода больше желаемого количества
+      maxUnavailable: 0  # Не допускать недоступности во время обновления
   selector:
     matchLabels:
       app: spring-boot-sentiment
@@ -21,12 +27,28 @@ spec:
     spec:
       containers:
         - name: spring-boot-app
-          image: localhost:5000/mephi-ai:1.0.4
+#          image: localhost:5000/mephi-ai:1.0.5
+#          image: localhost:5000/mephi-onnx:ubi10-micro-repack.1
+          image: localhost:5000/mephi-tribuo:1.0.1-bin
           ports:
             - containerPort: 8080
           env:
             - name: JAVA_OPTS
               value: "-Xmx300m -Xms150m"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5  # Даем приложению время на запуск
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
           resources:
             requests:
               memory: "128Mi"
@@ -41,6 +63,8 @@ metadata:
   name: spring-boot-sentiment-service
   labels:
     app: spring-boot-sentiment
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "5"
 spec:
   selector:
     app: spring-boot-sentiment
@@ -49,13 +73,17 @@ spec:
       targetPort: 8080
       name: http
   type: LoadBalancer
+#  sessionAffinity: ClientIP  # Стабильная маршрутизация от одного клиента
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: spring-boot-sentiment-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#    nginx.ingress.kubernetes.io/upstream-hash-by: "$request_uri"  # Распределение по URI
+    nginx.ingress.kubernetes.io/service-upstream: "true"  # Использовать Service вместо прямых Pod IP
 spec:
   ingressClassName: nginx
   rules:
