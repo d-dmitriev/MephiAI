@@ -134,7 +134,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    #- host: minikube-ingress.local
+    #- host: minikube-ingress.local # <- если включить, можно по имени обращаться, но при тестировании задержка dns накладывается
     - http:
         paths:
           - path: /
