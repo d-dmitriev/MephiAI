@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: spring-boot-sentiment-deployment
   labels:
-    app: spring-boot-sentiment
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
@@ -99,7 +98,6 @@ kind: Service
 metadata:
   name: spring-boot-sentiment-service
   labels:
-    app: spring-boot-sentiment
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
