@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
-    app.kubernetes.io/managed: "kubectl"
+    app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
@@ -28,7 +28,7 @@ spec:
         app.kubernetes.io/name: "spring-boot-sentiment"
         app.kubernetes.io/version: "1.0.0"
         app.kubernetes.io/instance: "spring-boot-sentiment-app"
-        app.kubernetes.io/managed: "kubectl"
+        app.kubernetes.io/managed-by: "kubectl"
         app.kubernetes.io/component: "sentiment-analyzer"
         app.kubernetes.io/part-of: "sentiment-analysis-system"
       annotations:
@@ -101,7 +101,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
-    app.kubernetes.io/managed: "kubectl"
+    app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
   annotations:
@@ -123,7 +123,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
-    app.kubernetes.io/managed: "kubectl"
+    app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
   annotations:
@@ -151,7 +151,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
-    app.kubernetes.io/managed: "kubectl"
+    app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
@@ -193,7 +193,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
-    app.kubernetes.io/managed: "kubectl"
+    app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
