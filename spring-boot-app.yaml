@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
+    app.kubernetes.io/managed: "true"
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
@@ -20,14 +21,14 @@ spec:
       maxUnavailable: 0  # Не допускать недоступности во время обновления
   selector:
     matchLabels:
-      app: spring-boot-sentiment
+      app.kubernetes.io/instance: "spring-boot-sentiment-app"
   template:
     metadata:
       labels:
-        app: spring-boot-sentiment
         app.kubernetes.io/name: "spring-boot-sentiment"
         app.kubernetes.io/version: "1.0.0"
         app.kubernetes.io/instance: "spring-boot-sentiment-app"
+        app.kubernetes.io/managed: "true"
         app.kubernetes.io/managed-by: "kubectl"
         app.kubernetes.io/component: "sentiment-analyzer"
         app.kubernetes.io/part-of: "sentiment-analysis-system"
@@ -101,6 +102,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
+    app.kubernetes.io/managed: "true"
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
@@ -108,7 +110,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "5"
 spec:
   selector:
-    app: spring-boot-sentiment
+    app.kubernetes.io/instance: "spring-boot-sentiment-app"
   ports:
     - port: 8080
       targetPort: 8080
@@ -123,6 +125,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
+    app.kubernetes.io/managed: "true"
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
@@ -151,6 +154,7 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
+    app.kubernetes.io/managed: "true"
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
@@ -193,13 +197,14 @@ metadata:
     app.kubernetes.io/name: "spring-boot-sentiment"
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
+    app.kubernetes.io/managed: "true"
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
   selector:
     matchLabels:
-      app: spring-boot-sentiment
+      app.kubernetes.io/instance: "spring-boot-sentiment-app" # <- для поиска сервиса, а не pod-а
   namespaceSelector:
     any: true  # Разрешаем искать Service в любом namespace
   endpoints:
