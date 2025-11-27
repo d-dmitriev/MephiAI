@@ -41,7 +41,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: spring-boot-app
-          image: localhost:5000/mephi-tribuo:1.0.1-bin
+          image: localhost:5000/mephi-tribuo:1.0.1-jlink
           ports:
             - containerPort: 8080
           env:
@@ -68,15 +68,15 @@ spec:
             # Общее максимальное время: 30 * 10 = 300 секунд (5 минут)
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/readiness
               port: 8080
-#            initialDelaySeconds: 0    # Начинаем проверять сразу после startup (по умолчанию 0)
+            # initialDelaySeconds: 0  # Начинаем проверять сразу после startup (по умолчанию 0)
             periodSeconds: 5          # Быстрая проверка когда приложение запустилось
             timeoutSeconds: 3 # (по умолчанию 1)
             failureThreshold: 3
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/liveness
               port: 8080
             initialDelaySeconds: 60 # (по умолчанию 0)
             periodSeconds: 10
