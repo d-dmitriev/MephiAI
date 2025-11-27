@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
   #replicas: 2 <- не используем с HPA иначе будет сбрасываться при применении
-  revisionHistoryLimit: 2  # хранить только 3 последние версии (вместо 10 по умолчанию)
+  revisionHistoryLimit: 1  # хранить только 3 последние версии (вместо 10 по умолчанию)
   minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым
   strategy:
     type: RollingUpdate
@@ -43,8 +43,8 @@ spec:
         - name: spring-boot-app
 #          image: localhost:5000/mephi-ai:1.0.5
 #          image: localhost:5000/mephi-onnx:ubi10-micro-repack.1
-#          image: localhost:5000/mephi-tribuo:1.0.1-bin
-          image: localhost:5000/mephi-tribuo:1.0.1-jlink
+          image: localhost:5000/mephi-tribuo:1.0.1-bin
+#          image: localhost:5000/mephi-tribuo:1.0.1-jlink
           ports:
             - containerPort: 8080
           env:
@@ -92,7 +92,7 @@ spec:
               cpu: "40m" # <- маленькое значение для тестирования нагрузки
           volumeMounts:
             - name: tmp-volume
-              mountPath: /tmps
+              mountPath: /tmp
       volumes:
         - name: tmp-volume
           emptyDir: {}
