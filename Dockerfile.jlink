@@ -13,10 +13,14 @@ RUN jlink \
     --no-header-files \
     --no-man-pages
 
+FROM alpine AS model
+COPY models/ /build/models/
+
 FROM alpine:3.17
 
 WORKDIR /opt/app
 COPY --from=builder /mini-runtime /mini-runtime
 COPY --from=builder /build/target/MephiML-1.0-SNAPSHOT.jar app.jar
+COPY --from=model /build/models/ /opt/app/models/
 EXPOSE 8080
 CMD ["/mini-runtime/bin/java", "-jar", "app.jar"]

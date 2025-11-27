@@ -32,7 +32,7 @@ public class SentimentService {
             this.model = Model.deserializeFromStream(is).castModel(Label.class);
         }
         healthIndicator.modelLoaded();
-        log.info("\"Model loaded from: {}", modelPath);
+        log.info("Model loaded from: {}", modelPath);
     }
 
     public SentimentResult analyze(String text) {
