@@ -13,12 +13,12 @@ metadata:
 spec:
   #replicas: 2 <- не используем с HPA иначе будет сбрасываться при применении
   revisionHistoryLimit: 1  # хранить только 3 последние версии (вместо 10 по умолчанию)
-  minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым
+  minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым (по умолчанию 0)
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1  # Максимум на 2 пода больше желаемого количества
-      maxUnavailable: 0  # Не допускать недоступности во время обновления
+      maxSurge: 1  # Максимум на 1 под больше желаемого количества (по умолчанию 25%)
+      maxUnavailable: 0  # Не допускать недоступности во время обновления (по умолчанию 25%)
   selector:
     matchLabels:
       app.kubernetes.io/instance: "spring-boot-sentiment-app"
@@ -70,23 +70,23 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 0    # Начинаем проверять сразу после startup
+#            initialDelaySeconds: 0    # Начинаем проверять сразу после startup (по умолчанию 0)
             periodSeconds: 5          # Быстрая проверка когда приложение запустилось
-            timeoutSeconds: 3
+            timeoutSeconds: 3 # (по умолчанию 1)
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 60 # (по умолчанию 0)
             periodSeconds: 10
           resources:
             requests:
               memory: "128Mi"
-              cpu: "10m" # <- маленькое значение для тестирования нагрузки
+              cpu: "10m" # = 0.01 ядра <- маленькое значение для тестирования нагрузки
             limits:
               memory: "512Mi"
-              cpu: "40m" # <- маленькое значение для тестирования нагрузки
+              cpu: "40m" # = 0.04 ядра <- маленькое значение для тестирования нагрузки
           volumeMounts:
             - name: tmp-volume
               mountPath: /tmp
@@ -106,8 +106,6 @@ metadata:
     app.kubernetes.io/managed-by: "kubectl"
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "5"
 spec:
   selector:
     app.kubernetes.io/instance: "spring-boot-sentiment-app"
@@ -115,7 +113,7 @@ spec:
     - port: 8080
       targetPort: 8080
       name: http
-  type: LoadBalancer
+  type: LoadBalancer # по умолчанию ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -167,14 +165,14 @@ spec:
   maxReplicas: 30
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 0 # 120
+      stabilizationWindowSeconds: 0 # 60–120 (по умолчанию 300)
       policies:
         - type: Pods
           value: 2           # Следующие поды - с задержкой
           periodSeconds: 120 # Ждем 120 секунд между добавлениями
       selectPolicy: Max    # Используем максимально возможное масштабирование
     scaleDown:
-      stabilizationWindowSeconds: 30  # Ждать только 30 секунд перед уменьшением
+      stabilizationWindowSeconds: 30  # Ждать только 30 секунд перед уменьшением (по умолчанию 300)
       policies:
         - type: Pods
           value: 2
@@ -206,9 +204,9 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: "spring-boot-sentiment-app" # <- для поиска сервиса, а не pod-а
   namespaceSelector:
-    any: true  # Разрешаем искать Service в любом namespace
+    any: true  # Разрешаем искать Service в любом namespace (по умолчанию false)
   endpoints:
     - port: http
       path: /actuator/prometheus
-      interval: 15s
-      scrapeTimeout: 10s
+      interval: 15s # (по умолчанию 30s)
+      scrapeTimeout: 10s # (по умолчанию 10s)
