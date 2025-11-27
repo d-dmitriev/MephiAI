@@ -2,6 +2,7 @@ package home.work.services;
 
 import home.work.dto.SentimentResult;
 import home.work.exceptions.SentimentAnalysisException;
+import home.work.providers.ModelHealthIndicator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,9 +27,10 @@ public class SentimentService {
 
     private final Model<Label> model;
 
-    public SentimentService(@Value("${app.model.path:sentiment_model.proto}") String modelPath) throws IOException {
+    public SentimentService(@Value("${app.model.path:sentiment_model.proto}") String modelPath, ModelHealthIndicator healthIndicator) throws IOException {
         Resource resource = new ClassPathResource(modelPath);
         this.model = Model.deserializeFromStream(resource.getInputStream()).castModel(Label.class);
+        healthIndicator.modelLoaded();
         log.info("Model {} loaded", modelPath);
     }
 
