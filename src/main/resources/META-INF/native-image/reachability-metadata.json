@@ -306,15 +306,7 @@
       "type": "com.sun.management.GarbageCollectorMXBean"
     },
     {
-      "type": "com.sun.management.GcInfo",
-      "fields": [
-        {
-          "name": "builder"
-        },
-        {
-          "name": "extAttributes"
-        }
-      ]
+      "type": "com.sun.management.GcInfo"
     },
     {
       "type": "com.sun.management.HotSpotDiagnosticMXBean"
@@ -450,12 +442,6 @@
       "type": "home.work.services.SentimentService",
       "allDeclaredFields": true,
       "methods": [
-        {
-          "name": "<init>",
-          "parameterTypes": [
-            "java.lang.String"
-          ]
-        },
         {
           "name": "<init>",
           "parameterTypes": [
@@ -910,14 +896,10 @@
       ]
     },
     {
-      "type": "java.lang.Comparable"
-    },
-    {
       "type": "java.lang.Deprecated"
     },
     {
       "type": "java.lang.Double",
-      "allDeclaredFields": true,
       "fields": [
         {
           "name": "TYPE"
@@ -953,10 +935,6 @@
     },
     {
       "type": "java.lang.Module"
-    },
-    {
-      "type": "java.lang.Number",
-      "allDeclaredFields": true
     },
     {
       "type": "java.lang.Object"
@@ -1025,9 +1003,6 @@
       "type": "java.lang.constant.Constable"
     },
     {
-      "type": "java.lang.constant.ConstantDesc"
-    },
-    {
       "type": "java.lang.invoke.TypeDescriptor$OfField"
     },
     {
@@ -1063,15 +1038,7 @@
       "type": "java.lang.management.MemoryPoolMXBean"
     },
     {
-      "type": "java.lang.management.MemoryUsage",
-      "methods": [
-        {
-          "name": "from",
-          "parameterTypes": [
-            "javax.management.openmbean.CompositeData"
-          ]
-        }
-      ]
+      "type": "java.lang.management.MemoryUsage"
     },
     {
       "type": "java.lang.management.MonitorInfo"
@@ -7640,9 +7607,6 @@
       "glob": "application.yml"
     },
     {
-      "glob": "banner.txt"
-    },
-    {
       "glob": "commons-logging.properties"
     },
     {
@@ -7746,9 +7710,6 @@
     },
     {
       "glob": "messages.properties"
-    },
-    {
-      "glob": "models/final_sentiment_model.proto"
     },
     {
       "glob": "org/apache/catalina/authenticator/LocalStrings.properties"
