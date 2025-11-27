@@ -10,7 +10,7 @@ import java.nio.file.Path;
 public class SentimentTestApp {
     public static void main(String[] args) throws Exception {
         // Загрузка модели
-        Model<Label> model = loadModel(Path.of("src/main/resources/models/final_sentiment_model.proto"));
+        Model<Label> model = loadModel(Path.of("models/final_sentiment_model.proto"));
         SentimentAnalyzerTrainer.SentimentService service = new SentimentAnalyzerTrainer.SentimentService((Model<Label>) model);
 
         // Анализ тональности

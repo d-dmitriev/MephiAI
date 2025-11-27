@@ -41,7 +41,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: spring-boot-app
-          image: localhost:5000/mephi-tribuo:1.0.2-bin
+          image: localhost:5000/mephi-tribuo:1.0.3-bin
           ports:
             - containerPort: 8080
           env:

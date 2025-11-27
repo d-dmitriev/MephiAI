@@ -6,8 +6,6 @@ import home.work.providers.ModelHealthIndicator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.tribuo.Example;
 import org.tribuo.ImmutableFeatureMap;
@@ -17,7 +15,9 @@ import org.tribuo.classification.Label;
 import org.tribuo.classification.LabelFactory;
 import org.tribuo.impl.ArrayExample;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,10 +28,11 @@ public class SentimentService {
     private final Model<Label> model;
 
     public SentimentService(@Value("${app.model.path:sentiment_model.proto}") String modelPath, ModelHealthIndicator healthIndicator) throws IOException {
-        Resource resource = new ClassPathResource(modelPath);
-        this.model = Model.deserializeFromStream(resource.getInputStream()).castModel(Label.class);
+        try (InputStream is = new FileInputStream(modelPath)) {
+            this.model = Model.deserializeFromStream(is).castModel(Label.class);
+        }
         healthIndicator.modelLoaded();
-        log.info("Model {} loaded", modelPath);
+        log.info("\"Model loaded from: {}", modelPath);
     }
 
     public SentimentResult analyze(String text) {

@@ -437,6 +437,16 @@
       ]
     },
     {
+      "type": "home.work.providers.ModelHealthIndicator",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
       "type": "home.work.services.SentimentService",
       "allDeclaredFields": true,
       "methods": [
@@ -444,6 +454,13 @@
           "name": "<init>",
           "parameterTypes": [
             "java.lang.String"
+          ]
+        },
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.String",
+            "home.work.providers.ModelHealthIndicator"
           ]
         }
       ]
@@ -2176,7 +2193,15 @@
     },
     {
       "type": "org.springframework.boot.ApplicationProperties",
-      "allDeclaredFields": true
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "setBannerMode",
+          "parameterTypes": [
+            "org.springframework.boot.Banner$Mode"
+          ]
+        }
+      ]
     },
     {
       "type": "org.springframework.boot.ClearCachesApplicationListener",
@@ -2210,6 +2235,34 @@
       ]
     },
     {
+      "type": "org.springframework.boot.actuate.autoconfigure.availability.AvailabilityProbesAutoConfiguration",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "availabilityProbesHealthEndpointGroupsPostProcessor",
+          "parameterTypes": [
+            "org.springframework.core.env.Environment"
+          ]
+        },
+        {
+          "name": "livenessStateHealthIndicator",
+          "parameterTypes": [
+            "org.springframework.boot.availability.ApplicationAvailability"
+          ]
+        },
+        {
+          "name": "readinessStateHealthIndicator",
+          "parameterTypes": [
+            "org.springframework.boot.availability.ApplicationAvailability"
+          ]
+        }
+      ]
+    },
+    {
       "type": "org.springframework.boot.actuate.autoconfigure.availability.AvailabilityProbesAutoConfiguration$ProbesCondition",
       "methods": [
         {
@@ -2217,6 +2270,10 @@
           "parameterTypes": []
         }
       ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.availability.AvailabilityProbesHealthEndpointGroupsPostProcessor",
+      "allDeclaredFields": true
     },
     {
       "type": "org.springframework.boot.actuate.autoconfigure.cloudfoundry.CloudFoundryEndpointExposureOutcomeContributor",
@@ -2497,6 +2554,14 @@
       "allDeclaredFields": true
     },
     {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.AutoConfiguredHealthContributorRegistry",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.AutoConfiguredHealthEndpointGroups",
+      "allDeclaredFields": true
+    },
+    {
       "type": "org.springframework.boot.actuate.autoconfigure.health.ConditionalOnEnabledHealthIndicator"
     },
     {
@@ -2514,6 +2579,135 @@
       ]
     },
     {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "healthContributorRegistry",
+          "parameterTypes": [
+            "org.springframework.context.ApplicationContext",
+            "org.springframework.boot.actuate.health.HealthEndpointGroups",
+            "java.util.Map",
+            "java.util.Map"
+          ]
+        },
+        {
+          "name": "healthEndpoint",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.health.HealthContributorRegistry",
+            "org.springframework.boot.actuate.health.HealthEndpointGroups",
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties"
+          ]
+        },
+        {
+          "name": "healthEndpointGroupMembershipValidator",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties",
+            "org.springframework.boot.actuate.health.HealthContributorRegistry"
+          ]
+        },
+        {
+          "name": "healthEndpointGroups",
+          "parameterTypes": [
+            "org.springframework.context.ApplicationContext",
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties"
+          ]
+        },
+        {
+          "name": "healthEndpointGroupsBeanPostProcessor",
+          "parameterTypes": [
+            "org.springframework.beans.factory.ObjectProvider"
+          ]
+        },
+        {
+          "name": "healthHttpCodeStatusMapper",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties"
+          ]
+        },
+        {
+          "name": "healthStatusAggregator",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration$HealthEndpointGroupMembershipValidator",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration$HealthEndpointGroupsBeanPostProcessor",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointReactiveWebExtensionConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointWebExtensionConfiguration",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "healthEndpointWebExtension",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.health.HealthContributorRegistry",
+            "org.springframework.boot.actuate.health.HealthEndpointGroups",
+            "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthEndpointWebExtensionConfiguration$MvcAdditionalHealthEndpointPathsConfiguration",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "healthEndpointWebMvcHandlerMapping",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.endpoint.web.WebEndpointsSupplier",
+            "org.springframework.boot.actuate.health.HealthEndpointGroups"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.HealthProperties",
+      "allDeclaredFields": true
+    },
+    {
       "type": "org.springframework.boot.actuate.autoconfigure.health.OnEnabledHealthIndicatorCondition",
       "methods": [
         {
@@ -2521,6 +2715,9 @@
           "parameterTypes": []
         }
       ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.autoconfigure.health.ReactiveHealthEndpointConfiguration"
     },
     {
       "type": "org.springframework.boot.actuate.autoconfigure.info.ConditionalOnEnabledInfoContributor"
@@ -3303,6 +3500,18 @@
       ]
     },
     {
+      "type": "org.springframework.boot.actuate.availability.AvailabilityStateHealthIndicator",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.availability.LivenessStateHealthIndicator",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.availability.ReadinessStateHealthIndicator",
+      "allDeclaredFields": true
+    },
+    {
       "type": "org.springframework.boot.actuate.beans.BeansEndpoint"
     },
     {
@@ -3327,6 +3536,9 @@
       "type": "org.springframework.boot.actuate.endpoint.OperationFilter"
     },
     {
+      "type": "org.springframework.boot.actuate.endpoint.OperationResponseBody"
+    },
+    {
       "type": "org.springframework.boot.actuate.endpoint.annotation.Endpoint"
     },
     {
@@ -3335,6 +3547,9 @@
     {
       "type": "org.springframework.boot.actuate.endpoint.annotation.EndpointDiscoverer",
       "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.endpoint.annotation.EndpointExtension"
     },
     {
       "type": "org.springframework.boot.actuate.endpoint.annotation.FilteredEndpoint"
@@ -3360,6 +3575,9 @@
       "type": "org.springframework.boot.actuate.endpoint.jackson.EndpointObjectMapper"
     },
     {
+      "type": "org.springframework.boot.actuate.endpoint.web.AdditionalPathsMapper"
+    },
+    {
       "type": "org.springframework.boot.actuate.endpoint.web.EndpointMediaTypes",
       "allDeclaredFields": true
     },
@@ -3383,6 +3601,9 @@
     },
     {
       "type": "org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpointsSupplier"
+    },
+    {
+      "type": "org.springframework.boot.actuate.endpoint.web.annotation.EndpointWebExtension"
     },
     {
       "type": "org.springframework.boot.actuate.endpoint.web.annotation.ServletEndpointDiscoverer",
@@ -3427,6 +3648,10 @@
       ]
     },
     {
+      "type": "org.springframework.boot.actuate.endpoint.web.servlet.AdditionalHealthEndpointPathsWebMvcHandlerMapping",
+      "allDeclaredFields": true
+    },
+    {
       "type": "org.springframework.boot.actuate.endpoint.web.servlet.ControllerEndpointHandlerMapping",
       "allDeclaredFields": true
     },
@@ -3445,14 +3670,125 @@
       "allDeclaredFields": true
     },
     {
-      "type": "org.springframework.boot.actuate.health.HealthEndpoint"
+      "type": "org.springframework.boot.actuate.health.CompositeHealth",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "getComponents",
+          "parameterTypes": []
+        },
+        {
+          "name": "getDetails",
+          "parameterTypes": []
+        },
+        {
+          "name": "getStatus",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.ContributorRegistry"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.DefaultContributorRegistry",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.DefaultHealthContributorRegistry",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthComponent",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthContributor"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthContributorRegistry"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthEndpoint",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthEndpointGroups"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthEndpointGroupsPostProcessor"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthEndpointSupport",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.HealthEndpointWebExtension",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "health",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.endpoint.ApiVersion",
+            "org.springframework.boot.actuate.endpoint.web.WebServerNamespace",
+            "org.springframework.boot.actuate.endpoint.SecurityContext"
+          ]
+        },
+        {
+          "name": "health",
+          "parameterTypes": [
+            "org.springframework.boot.actuate.endpoint.ApiVersion",
+            "org.springframework.boot.actuate.endpoint.web.WebServerNamespace",
+            "org.springframework.boot.actuate.endpoint.SecurityContext",
+            "java.lang.String[]"
+          ]
+        }
+      ]
     },
     {
       "type": "org.springframework.boot.actuate.health.HealthIndicator"
     },
     {
+      "type": "org.springframework.boot.actuate.health.HttpCodeStatusMapper"
+    },
+    {
       "type": "org.springframework.boot.actuate.health.PingHealthIndicator",
       "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.SimpleHttpCodeStatusMapper",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.SimpleStatusAggregator",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.Status",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "getCode",
+          "parameterTypes": []
+        },
+        {
+          "name": "getDescription",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.StatusAggregator"
+    },
+    {
+      "type": "org.springframework.boot.actuate.health.SystemHealth",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "getGroups",
+          "parameterTypes": []
+        }
+      ]
     },
     {
       "type": "org.springframework.boot.actuate.info.InfoEndpoint"
@@ -7185,6 +7521,13 @@
     {
       "type": {
         "proxy": [
+          "org.springframework.boot.actuate.endpoint.annotation.EndpointExtension"
+        ]
+      }
+    },
+    {
+      "type": {
+        "proxy": [
           "org.springframework.boot.context.properties.ConfigurationProperties"
         ]
       }
@@ -7334,6 +7677,9 @@
     },
     {
       "glob": "home/work/controllers/SentimentController.class"
+    },
+    {
+      "glob": "home/work/providers/ModelHealthIndicator.class"
     },
     {
       "glob": "home/work/services/SentimentService.class"
@@ -7831,6 +8177,9 @@
       "glob": "org/springframework/boot/actuate/autoconfigure/availability/AvailabilityHealthContributorAutoConfiguration.class"
     },
     {
+      "glob": "org/springframework/boot/actuate/autoconfigure/availability/AvailabilityProbesAutoConfiguration$ProbesCondition.class"
+    },
+    {
       "glob": "org/springframework/boot/actuate/autoconfigure/availability/AvailabilityProbesAutoConfiguration.class"
     },
     {
@@ -7901,6 +8250,36 @@
     },
     {
       "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointAutoConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$AdaptedReactiveHealthContributors.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$HealthEndpointGroupMembershipValidator.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$HealthEndpointGroupsBeanPostProcessor.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointReactiveWebExtensionConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$JerseyAdditionalHealthEndpointPathsConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$JerseyAdditionalHealthEndpointPathsResourcesRegistrar.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$MvcAdditionalHealthEndpointPathsConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/autoconfigure/health/ReactiveHealthEndpointConfiguration.class"
     },
     {
       "glob": "org/springframework/boot/actuate/autoconfigure/info/InfoContributorAutoConfiguration.class"
@@ -8165,6 +8544,12 @@
     },
     {
       "glob": "org/springframework/boot/actuate/autoconfigure/web/servlet/WebMvcEndpointChildContextConfiguration.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/health/HealthContributor.class"
+    },
+    {
+      "glob": "org/springframework/boot/actuate/health/HealthIndicator.class"
     },
     {
       "glob": "org/springframework/boot/autoconfigure/AbstractDependsOnBeanFactoryPostProcessor.class"

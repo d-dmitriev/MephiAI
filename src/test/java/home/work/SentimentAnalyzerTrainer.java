@@ -292,7 +292,7 @@ public class SentimentAnalyzerTrainer {
         testModelWithAnalysis(model);
 
         // Сохраняем модель
-        saveModel(model, Path.of("src/main/resources/models/final_sentiment_model.proto"));
+        saveModel(model, Path.of("models/final_sentiment_model.proto"));
 
         // Создаем сервис для использования
         SentimentService service = new SentimentService(model);
