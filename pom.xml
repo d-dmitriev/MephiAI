@@ -76,4 +76,48 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>train-model</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.6.2</version>
+                        <configuration>
+                            <!-- Класс, который нужно запустить -->
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>home.work.SentimentAnalyzerTrainer</argument>
+                            </arguments>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <!-- Привязываем выполнение к фазе перед упаковкой -->
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Класс, который нужно запустить -->
+                                    <executable>java</executable>
+                                    <arguments>
+                                        <!-- Добавляем classpath тестов -->
+                                        <argument>-classpath</argument>
+                                        <classpath/>
+                                        <!-- Полное имя вашего класса -->
+                                        <argument>home.work.SentimentAnalyzerTrainer</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
