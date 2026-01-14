@@ -83,10 +83,10 @@ spec:
           resources:
             requests:
               memory: "128Mi"
-              cpu: "10m" # = 0.01 ядра <- маленькое значение для тестирования нагрузки
+              cpu: "100m" # = 0.1 ядра <- маленькое значение для тестирования нагрузки
             limits:
               memory: "512Mi"
-              cpu: "40m" # = 0.04 ядра <- маленькое значение для тестирования нагрузки
+              cpu: "400m" # = 0.4 ядра <- маленькое значение для тестирования нагрузки
           volumeMounts:
             - name: tmp-volume
               mountPath: /tmp
@@ -161,7 +161,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: spring-boot-sentiment-deployment
-  minReplicas: 2
+  minReplicas: 3
   maxReplicas: 30
   behavior:
     scaleUp:
