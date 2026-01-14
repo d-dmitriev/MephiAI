@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/component: "sentiment-analyzer"
     app.kubernetes.io/part-of: "sentiment-analysis-system"
 spec:
-  #replicas: 2 <- не используем с HPA иначе будет сбрасываться при применении
+  #replicas: 3 <- не используем с HPA иначе будет сбрасываться при применении
   revisionHistoryLimit: 1  # хранить только 3 последние версии (вместо 10 по умолчанию)
   minReadySeconds: 5  # Минимальное время готовности перед тем как Pod считается готовым (по умолчанию 0)
   strategy:
